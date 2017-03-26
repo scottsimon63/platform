@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="catalog_script_client">
+    <catalog_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_catalog>true</applies_catalog>
+        <applies_extended>false</applies_extended>
+        <applies_req_item>true</applies_req_item>
+        <applies_sc_task>true</applies_sc_task>
+        <applies_to>set</applies_to>
+        <cat_item/>
+        <cat_variable/>
+        <condition/>
+        <description/>
+        <field/>
+        <global>true</global>
+        <messages/>
+        <name>validaton_OL</name>
+        <order/>
+        <script><![CDATA[function onLoad() {  
+}
+
+/**
+ * checkNumber
+*/
+checkNumber = function(control, number) {
+	if(isNaN(number)) {
+		failureAction(control, "This Field Must be a Number");
+	}
+};
+
+checkNumberRange = function(control, number, srange, erange) {
+	if(isNaN(number)) {
+		failureAction(control, "This Field Must be a Number");
+	} else {
+		if (number <= srange || number >= erange) {
+		failureAction(control, "This Number Must be in Range of " + srange + " and " + erange);			
+		}
+	}
+};
+
+/**
+ * checkDate
+*/
+
+checkDate = function(control, date) {
+	 var format = g_user_date_format; //format is currently MM-dd-yyyy
+	 var checkDate = getDateFromFormat(date, format) != 0;
+	 
+	 if(checkDate == 0)
+	 {
+		failureAction(control, "Invalid format, must be '"+ format+"', or use calendar icon to add date!");
+	 }
+};
+	
+
+checkDateGT = function(control, LTdate, GTdate) {
+	 var format = g_user_date_format; //format is currently MM-dd-yyyy
+	 var checkDate = getDateFromFormat(LTdate, format) != 0;
+
+     if (LTdate != '') {	
+		 if(checkDate == 0)
+		 {
+			failureAction(control, "Invalid format, must be '"+ format+"', or use calendar icon to add date!");
+			return;
+		 }
+	 }
+	 
+	 if (GTdate != '') {
+		 checkDate = getDateFromFormat(GTdate, format) != 0;
+		 
+		 if(checkDate == 0)
+		 {
+			failureAction(control, "Invalid format, must be '"+ format+"', or use calendar icon to add date!");
+			return;
+		 }
+	 }
+	
+     if (LTdate != '' && GTdate != '') {
+		 if(LTdate > GTdate) {
+			failureAction(control, "Dates are valid, but " + GTdate + " must be greater than " + LTdate);		 
+		 }
+	 }
+};
+
+checkDateTime = function(control, value) {
+	//var value = "22.05.2013 11:23:22";	
+	//var matches = value.match(/^(\d{2})\-(\d{2})\-(\d{4}) (\d{2}):(\d{2}):(\d{2}) [APap][mM]$/);
+	var matches = value.match(/^(((0[13578]|1[02])[\/\.-](0[1-9]|[12]\d|3[01])[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-2]):(0[0-9]|[1-59]\d):(0[0-9]|[1-59]\d)\s(AM|am|PM|pm))|((0[13456789]|1[012])[\/\.-](0[1-9]|[12]\d|30)[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-2]):(0[0-9]|[1-59]\d):(0[0-9]|[1-59]\d)\s(AM|am|PM|pm))|((02)[\/\.-](0[1-9]|1\d|2[0-8])[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-2]):(0[0-9]|[1-59]\d):(0[0-9]|[1-59]\d)\s(AM|am|PM|pm))|((02)[\/\.-](29)[\/\.-]((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))\s(0[0-9]|1[0-2]):(0[0-9]|[1-59]\d):(0[0-9]|[1-59]\d)\s(AM|am|PM|pm)))$/g);
+	
+	//alt:
+	// value.match(/^(\d{2}).(\d{2}).(\d{4}).(\d{2}).(\d{2}).(\d{2})$/);
+	// also matches 22/05/2013 11:23:22 and 22a0592013,11@23a22
+	if (matches === null) {
+		failureAction(control, "Invalid Date Time Format - format must be dd-mm-yyyy hh:mm:ss AM|PM");  
+	} 
+};
+
+checkDateTimeGT = function(control, LTdate, GTdate) {
+     if (LTdate != '' && GTdate != '') {
+		 if(LTdate > GTdate) {
+			failureAction(control, "Dates are valid, but " + GTdate + " must be greater than " + LTdate);		 
+		 }
+	 }
+};
+
+/**
+ * checkPhone
+*/
+
+checkPhone = function(control, phone) {
+   //var pattern = /^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/;
+   var pattern = /^\(?[0-9]{3}(\-|\)) ?[0-9]{3}-[0-9]{4}$/;
+	
+   if (!pattern.test(phone)) { 
+	  failureAction(control, "Invalid Phone Format - format must be 999-999-9999 or (999) 999-9999");  
+   }
+};
+
+/**
+ * checkEmail
+ * Fires a warning if value is not a valid email address.
+ * DO NOT WORRY ABOUT WARNING at line 105: Unescaped '['.
+ */
+checkEmail = function(control, email) {
+   var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   if (!pattern.test(email)) { 
+	  failureAction(control, "Invalid Email Address");  
+   }
+};
+
+checkWebSite = function(control, url) {
+	var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+
+	if (!re.test(url)) { 
+		failureAction(control, "Invalid Web Site URL - format must be http[s]://www.website.com");  
+	}						 
+						
+};
+
+checkIPv4 = function(control, ipAddress) {
+   if (ipAddress.indexOf('ALL') != 0) {
+      ipArray = ipAddress.split('.');
+		
+      if(ipArray.length != 4) {
+         failureAction(control, "IP Address Format needs to be xxx.xxx.xxx.xxx (where xxx between 0 and 255)");  
+      }
+		
+      for(i=0;i<ipArray.length;i++) {
+         var value = ipArray[i];
+         
+         if(0 > value || value > 255 || isNaN(value)) {
+            failureAction(control, "IP Address range is not between 0 and 255");
+            return; 				
+         }
+      }
+   }	
+};
+
+setCollectorFilter = function (collectorName, filterString) {
+      //Reset the filter query	
+      window[collectorName + 'g_filter'].reset();  
+      window[collectorName + 'g_filter'].setQuery(filterString);  
+      window[collectorName + 'acRequest'](null);  
+      //Redisplay the list collector variable
+	  alert(filterString);
+      g_form.setDisplay(collectorName, true);
+};
+
+failureAction = function(control, message) {
+	alert(message);
+	//control.setValue('');
+    setTimeout(function(){control.focus();}, 1);	
+};
+]]></script>
+        <sys_class_name>catalog_script_client</sys_class_name>
+        <sys_created_by>scott.simon</sys_created_by>
+        <sys_created_on>2017-03-25 22:27:36</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>814d686cdbf1fe0070c8f52ebf96190c</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>validaton_OL</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Platform" source="x_snc_platform">d6715350db31fe0070c8f52ebf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Platform">d6715350db31fe0070c8f52ebf961997</sys_scope>
+        <sys_update_name>catalog_script_client_814d686cdbf1fe0070c8f52ebf96190c</sys_update_name>
+        <sys_updated_by>scott.simon</sys_updated_by>
+        <sys_updated_on>2017-03-26 12:41:24</sys_updated_on>
+        <table/>
+        <type>onLoad</type>
+        <ui_type>0</ui_type>
+        <variable_set display_value="validation_functions">983dec2cdbf1fe0070c8f52ebf9619ad</variable_set>
+        <view/>
+    </catalog_script_client>
+</record_update>
