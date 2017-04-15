@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <css>h2 {
+   color: #FFD100; //or use whatever color you like here
+   font-size: 24px;
+}
+</css>
+        <id>lab_1</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>scott.simon</sys_created_by>
+        <sys_created_on>2017-03-28 22:38:47</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>aaac80e5dbf57240c20354c0cf961961</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>lab_1</sys_name>
+        <sys_package display_value="Platform" source="x_snc_platform">d6715350db31fe0070c8f52ebf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Platform">d6715350db31fe0070c8f52ebf961997</sys_scope>
+        <sys_update_name>sp_page_aaac80e5dbf57240c20354c0cf961961</sys_update_name>
+        <sys_updated_by>scott.simon</sys_updated_by>
+        <sys_updated_on>2017-04-05 00:55:05</sys_updated_on>
+        <title>Lab 1</title>
+    </sp_page>
+</record_update>

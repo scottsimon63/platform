@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_container">
+    <sp_container action="INSERT_OR_UPDATE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>Dashboard - Container 1</name>
+        <order>1</order>
+        <sp_page display_value="dashboard">94c13c37db7df200c20354c0cf9619fc</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>scott.simon</sys_created_by>
+        <sys_created_on>2017-04-05 01:07:10</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>9cc17c37db7df200c20354c0cf961902</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Dashboard - Container 1</sys_name>
+        <sys_package display_value="Platform" source="x_snc_platform">d6715350db31fe0070c8f52ebf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Platform">d6715350db31fe0070c8f52ebf961997</sys_scope>
+        <sys_update_name>sp_container_9cc17c37db7df200c20354c0cf961902</sys_update_name>
+        <sys_updated_by>scott.simon</sys_updated_by>
+        <sys_updated_on>2017-04-05 01:07:10</sys_updated_on>
+        <width>container</width>
+    </sp_container>
+</record_update>

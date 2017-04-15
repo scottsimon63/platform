@@ -58,7 +58,7 @@
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>scott.simon</sys_created_by>
         <sys_created_on>2017-03-25 21:51:54</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>f60520a4dbf1fe0070c8f52ebf9619a5</sys_id>
         <sys_mod_count>1</sys_mod_count>
         <sys_name>Request For Information</sys_name>

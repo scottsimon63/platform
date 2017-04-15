@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_platform.GlideRecordExtensions</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>GlideRecordExtensions</name>
+        <script><![CDATA[var GlideRecordExtensions = Class.create();
+GlideRecordExtensions.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	getUserInfo: function() {
+		userRec = {};
+		
+		try {
+			var sys_id = this.getParameter('sysparm_key');
+			var user = new GlideRecord('sys_user');
+			
+			if (user.get(sys_id)) {
+				userRec.email = user.email.toString();
+				userRec.phone = user.phone.toString();
+			} else {
+				userRec.error = 'userInfo user not found';				
+			}
+			
+		} catch (error) {
+			userRec.error = 'userInfo Error found ' + error;
+		}
+		
+		var json = new global.JSON().encode(userRec);
+
+		return json;		
+	},
+	
+	/*getRecords: function() {
+		gs.info('LSS in GRE');
+		var tableName = this.getParameter('table');
+		var selectFields = this.getParameter('fields');
+		var qry = this.getParameter('qry');		
+		var limit = this.getParameter('limit');	
+		var orderby = this.getParameter('orderby');	
+		gs.info('LSS gr ' + tableName);
+		var selectList = {};
+
+		var table = new GlideRecord(tableName);  
+		table.addEncodedQuery(qry); 
+		table.setLimit(limit);
+		table.orderBy(orderby);	
+		table.query();  
+		//table.selectFields = [];
+
+		if (table.next()) {
+			var fields = selectFields.split(',');
+
+			for (var field in fields) {
+				// if valid field exists on table
+				if (gr.isValidField(field)) {
+					selectList.field = fields[field].toString();
+				}
+			}	
+		}
+
+		var rec = new global.JSON().encode(selectList);
+		
+		return rec;
+	},*/	
+	
+    type: 'GlideRecordExtensions'
+	
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>scott.simon</sys_created_by>
+        <sys_created_on>2017-03-27 14:43:41</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>22a51dc1dbb9324070c8f52ebf961935</sys_id>
+        <sys_mod_count>35</sys_mod_count>
+        <sys_name>GlideRecordExtensions</sys_name>
+        <sys_package display_value="Platform" source="x_snc_platform">d6715350db31fe0070c8f52ebf961997</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Platform">d6715350db31fe0070c8f52ebf961997</sys_scope>
+        <sys_update_name>sys_script_include_22a51dc1dbb9324070c8f52ebf961935</sys_update_name>
+        <sys_updated_by>scott.simon</sys_updated_by>
+        <sys_updated_on>2017-04-14 17:21:53</sys_updated_on>
+    </sys_script_include>
+</record_update>

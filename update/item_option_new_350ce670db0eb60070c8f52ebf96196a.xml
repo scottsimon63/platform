@@ -10,11 +10,11 @@
         <choice_table/>
         <create_roles/>
         <default_html_value/>
-        <default_value/>
+        <default_value>javascript:gs.getUser().getRecord().getValue('phone');</default_value>
         <delete_roles/>
         <delivery_plan/>
         <description/>
-        <display_title>true</display_title>
+        <display_title>false</display_title>
         <do_not_select_first>false</do_not_select_first>
         <dynamic_default_value/>
         <dynamic_ref_qual/>
@@ -24,7 +24,7 @@
         <help_text/>
         <include_none>false</include_none>
         <instructions/>
-        <layout>2down</layout>
+        <layout>normal</layout>
         <list_table/>
         <lookup_label/>
         <lookup_price/>
@@ -36,11 +36,11 @@
         <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>
         <mask_use_encryption>false</mask_use_encryption>
-        <name>requestby_start</name>
-        <order>100</order>
+        <name>requestby_phone</name>
+        <order>175</order>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
-        <question_text>Request By Information</question_text>
+        <question_text>Phone</question_text>
         <read_roles/>
         <rec_lookup_price/>
         <rec_price_if_checked>0</rec_price_if_checked>
@@ -57,21 +57,21 @@
         <summary_macro/>
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>scott.simon</sys_created_by>
-        <sys_created_on>2017-03-25 16:05:11</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
-        <sys_id>5c759f14db31fe0070c8f52ebf961916</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>Request By Information</sys_name>
+        <sys_created_on>2017-04-08 12:37:44</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>350ce670db0eb60070c8f52ebf96196a</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Phone</sys_name>
         <sys_package display_value="Platform" source="x_snc_platform">d6715350db31fe0070c8f52ebf961997</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Platform">d6715350db31fe0070c8f52ebf961997</sys_scope>
-        <sys_update_name>item_option_new_5c759f14db31fe0070c8f52ebf961916</sys_update_name>
+        <sys_update_name>item_option_new_350ce670db0eb60070c8f52ebf96196a</sys_update_name>
         <sys_updated_by>scott.simon</sys_updated_by>
-        <sys_updated_on>2017-03-25 16:06:30</sys_updated_on>
+        <sys_updated_on>2017-04-13 20:42:16</sys_updated_on>
         <table/>
         <tooltip/>
-        <type>19</type>
+        <type>6</type>
         <u_reportable>false</u_reportable>
         <ui_page/>
         <use_dynamic_default>false</use_dynamic_default>
@@ -86,5 +86,5 @@
         <visible_summary>true</visible_summary>
         <write_roles/>
     </item_option_new>
-    <sys_translated_text action="delete_multiple" query="documentkey=5c759f14db31fe0070c8f52ebf961916"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=350ce670db0eb60070c8f52ebf96196a"/>
 </record_update>
